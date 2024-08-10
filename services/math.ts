@@ -7,8 +7,6 @@ interface Formula1Vars {
 }
 
 export function getFormula1(vars: Formula1Vars): number {
-	console.log(vars);
-
 	return (
 		(15.42 * vars.o +
 			19.14 * vars.s +
