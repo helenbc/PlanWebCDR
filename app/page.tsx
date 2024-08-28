@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import { Container, InfoText, Title } from "@/components/home/styles";
 import Input from "@/components/Input";
 import Spacer from "@/components/Spacer";
-import NavBar from "@/components/NavBar"; // Importando a NavBar
+import NavBar from "@/components/NavBar";
 
 import * as mathService from "@/services/math";
 
@@ -55,7 +55,8 @@ export default function Page() {
 
 	return (
 		<>
-			<NavBar /> {/* Adicionando a NavBar */}
+			<NavBar />
+			
 			<Container>
 				<Title>PlanWebCDR</Title>
 
