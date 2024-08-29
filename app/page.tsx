@@ -6,8 +6,6 @@ import Input from "@/components/Input";
 import Spacer from "@/components/Spacer";
 import NavBar from "@/components/NavBar";
 
-import * as mathService from "@/services/math";
-
 export default function Page() {
 	const [cityName, setCityName] = useState("");
 	const [cityPopulation, setCityPopulation] = useState("");
@@ -31,26 +29,11 @@ export default function Page() {
 		"Por favor, preencha as entradas!",
 	);
 
-	function calculateFormula1() {
-		const result = mathService.getFormula1({
-			o: Number(fracaoOrganica),
-			s: Number(sanitarios),
-			pl: Number(plasticos),
-			pa: Number(papeis),
-			t: Number(texteis),
-		});
-		console.log(result);
-
-		setFormula1Result(result.toString());
-	}
-
-	function calculateFormula2() {
-		const result = mathService.getFormula2({
-			coletaSeletiva: Number(coletaSeletiva),
-			comercializada: Number(comercializada),
-		});
-
-		setFormula2Result(result.toString());
+	function generateReport() {
+		window.open(
+			`/api/reports?o=${fracaoOrganica}&s=${sanitarios}&pl=${plasticos}&pa=${papeis}&t=${texteis}&coletaSeletiva=${coletaSeletiva}&comercializada=${comercializada}`,
+			'_blank'
+		)
 	}
 
 	return (
@@ -152,10 +135,6 @@ export default function Page() {
 
 				<Spacer space={20} />
 
-				<Button title="Calcular fórmula" onClick={calculateFormula1} />
-
-				<Title>{formula1Result}</Title>
-
 				<InfoText>
 					Para atingir a meta da PNRS de enviar apenas rejeitos aos aterros
 					sanitários, a eficiência da coleta seletiva é fundamental e quanto
@@ -183,9 +162,7 @@ export default function Page() {
 
 				<Spacer space={20} />
 
-				<Button title="Calcular fórmula" onClick={calculateFormula2} />
-
-				<Title>{formula2Result}</Title>
+				<Button title="Obter relatório" onClick={generateReport} />
 			</Container>
 		</>
 	);
