@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import * as mathService from "@/services/math";
+import * as pdfService from "@/services/pdf";
 
 const schema = z.object({
 	o: z.number(),
@@ -35,8 +36,12 @@ export function GET(request: NextRequest) {
 	const formula1 = mathService.getFormula1(parsed.data);
 	const formula2 = mathService.getFormula2(parsed.data);
 
-	return NextResponse.json({
-		formula1,
-		formula2,
-	});
+	const headers = {
+		"Content-Type": "application/pdf",
+		"Content-Disposition": 'attachment; filename="report.pdf"',
+	};
+
+	const doc = pdfService.generatePdf(formula1, formula2);
+
+	return new NextResponse(doc, { headers });
 }
