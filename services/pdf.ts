@@ -1,4 +1,3 @@
-import fs from "node:fs";
 import { jsPDF } from "jspdf";
 
 export function generatePdf(formula1: number, formula2: number) {
