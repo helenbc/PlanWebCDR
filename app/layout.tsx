@@ -1,11 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
 	title: "PlanWebCDR",
-	// Podemos definir um icone da aba do navegador
-	viewport:
-		"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1.00001, viewport-fit=cover",
+};
+
+export const viewport: Viewport = {
+	width: "device-width",
+	initialScale: 1,
+	minimumScale: 1,
+	maximumScale: 1.00001,
+	viewportFit: "cover",
 };
 
 export default function RootLayout({

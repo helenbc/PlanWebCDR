@@ -1,9 +1,14 @@
 "use client";
+import Banner from "@/components/Banner";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import NavBar from "@/components/NavBar";
 import Spacer from "@/components/Spacer";
-import { Container, InfoText, Title } from "@/components/home/styles";
+import {
+	Container,
+	InfoText,
+	PageContainer,
+	Title,
+} from "@/components/home/styles";
 import { useState } from "react";
 
 export default function Page() {
@@ -29,12 +34,10 @@ export default function Page() {
 	}
 
 	return (
-		<>
-			<NavBar />
+		<PageContainer>
+			<Banner />
 
 			<Container>
-				<Title>PlanWebCDR</Title>
-
 				<InfoText>
 					Esta aplicação visa analisar o potencial energético dos resíduos
 					sólidos domiciliares (RSD) de uma determinada localidade brasileira,
@@ -166,7 +169,9 @@ export default function Page() {
 				<Spacer space={20} />
 
 				<Button title="Obter relatório" onClick={generateReport} />
+
+				<Spacer space={50} />
 			</Container>
-		</>
+		</PageContainer>
 	);
 }
