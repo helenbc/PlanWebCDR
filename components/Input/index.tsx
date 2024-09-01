@@ -1,13 +1,5 @@
-import { FaCalendar, FaCity, FaPeopleGroup, FaPerson } from "react-icons/fa6";
+import { icons } from "@/services/icons";
 import { Container, CustomInput, Label, LabelWrapper } from "./styles";
-
-const icons = {
-	people: <FaPeopleGroup />,
-	city: <FaCity />,
-	calendar: <FaCalendar />,
-	person: <FaPerson />,
-	// Add more icons as needed
-};
 
 interface Props {
 	label: string;

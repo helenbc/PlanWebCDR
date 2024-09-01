@@ -111,35 +111,40 @@ export default function Page() {
 				</InfoText>
 
 				<Input
-					label="(O) Fração orgânica (restos de alimentos + podas)"
+					icon="food"
+					label="Fração orgânica (restos de alimentos + podas) (O)"
 					placeholder="12"
 					value={fracaoOrganica}
 					onChange={setFracaoOrganica}
 					isDecimal
 				/>
 				<Input
-					label="(S) Sanitários"
+					icon="sanitizer"
+					label="Sanitários (S)"
 					placeholder="12"
 					value={sanitarios}
 					onChange={setSanitarios}
 					isDecimal
 				/>
 				<Input
-					label="(Pl) Plásticos"
+					icon="plastic"
+					label="Plásticos (Pl)"
 					placeholder="12"
 					value={plasticos}
 					onChange={setPlasticos}
 					isDecimal
 				/>
 				<Input
-					label="(Pa) Papel e papelão"
+					icon="paper"
+					label="Papel e papelão (Pa)"
 					placeholder="12"
 					value={papeis}
 					onChange={setPapeis}
 					isDecimal
 				/>
 				<Input
-					label="(T) têxteis"
+					icon="dress"
+					label="Têxteis (T)"
 					placeholder="12"
 					value={texteis}
 					onChange={setTexteis}
@@ -161,14 +166,16 @@ export default function Page() {
 				</InfoText>
 
 				<Input
-					label="QUANTIDADE DE RESÍDUOS – COLETA SELETIVA"
+					icon="trash"
+					label="Quantidade de resíduos – COLETA SELETIVA"
 					placeholder="12"
 					value={coletaSeletiva}
 					onChange={setColetaSeletiva}
 					isDecimal
 				/>
 				<Input
-					label="QUANTIDADE DE RESÍDUOS COMERCIALIZADA"
+					icon="money"
+					label="Quantidade de resíduos - COMERCIALIZADA"
 					placeholder="12"
 					value={comercializada}
 					onChange={setComercializada}
