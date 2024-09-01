@@ -6,21 +6,28 @@ export const Container = styled.div`
   align-items: flex-start;
   justify-content: center;
   margin: 0.5rem 0;
-  max-width: 400px;
+  max-width: 500px;
   width: 100%;
+`;
+
+export const LabelWrapper = styled.span`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5rem;
+  align-items: center;
 `;
 
 export const Label = styled.span`
   font-size: 1rem;
-  margin-bottom: 0.2rem;
   font-weight: 500;
+  margin-left: 0.5rem;
 `;
 
 export const CustomInput = styled.input`
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
+  border-radius: 1rem;
   font-size: 1rem;
   outline: none;
   width: 100%;
+  border: none;
+  padding: 10px;
 `;

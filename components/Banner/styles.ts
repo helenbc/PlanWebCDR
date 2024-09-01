@@ -17,10 +17,9 @@ export const GlassBackground = styled.div`
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   padding: 20px;
-  border-radius: 10px;
-  width: 20%;
-  min-width: 320px;
-  max-width: 1200px;
+  border-radius: 500px;
+  width: 120px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;

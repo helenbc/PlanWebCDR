@@ -22,6 +22,17 @@ export const Container = styled.div`
   padding: 0 20px;
 `;
 
+export const LogoContainer = styled.div`
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
 export const Title = styled.h1`
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -34,4 +45,5 @@ export const InfoText = styled.p`
   background-color: #fff;
   padding: 1rem;
   border-radius: 1rem;
+  max-width: 500px;
 `;

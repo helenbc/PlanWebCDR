@@ -6,9 +6,11 @@ import Spacer from "@/components/Spacer";
 import {
 	Container,
 	InfoText,
+	LogoContainer,
 	PageContainer,
 	Title,
 } from "@/components/home/styles";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Page() {
@@ -36,6 +38,9 @@ export default function Page() {
 	return (
 		<PageContainer>
 			<Banner />
+			<LogoContainer>
+				<Image src="/logo2.png" width={300} height={100} alt="PlanWebCDR" />
+			</LogoContainer>
 
 			<Container>
 				<InfoText>
@@ -51,12 +56,14 @@ export default function Page() {
 				</InfoText>
 
 				<Input
+					icon="city"
 					label="Nome do Município"
 					placeholder="Ex: São Paulo"
 					value={cityName}
 					onChange={setCityName}
 				/>
 				<Input
+					icon="people"
 					label="Número de habitantes"
 					placeholder="Ex: 73044304"
 					value={cityPopulation}
@@ -64,6 +71,7 @@ export default function Page() {
 					isDecimal
 				/>
 				<Input
+					icon="calendar"
 					label="Quantidade de resíduos gerados anualmente"
 					placeholder="10000"
 					value={annualGeneratedWaste}
@@ -71,6 +79,7 @@ export default function Page() {
 					isDecimal
 				/>
 				<Input
+					icon="person"
 					label="Geração de resíduos per capita"
 					placeholder="12000"
 					value={perCapitaWasteGeneration}

@@ -1,4 +1,13 @@
-import { Container, CustomInput, Label } from "./styles";
+import { FaCalendar, FaCity, FaPeopleGroup, FaPerson } from "react-icons/fa6";
+import { Container, CustomInput, Label, LabelWrapper } from "./styles";
+
+const icons = {
+	people: <FaPeopleGroup />,
+	city: <FaCity />,
+	calendar: <FaCalendar />,
+	person: <FaPerson />,
+	// Add more icons as needed
+};
 
 interface Props {
 	label: string;
@@ -6,6 +15,7 @@ interface Props {
 	value?: string;
 	onChange?: (value: string) => void;
 	isDecimal?: boolean;
+	icon?: keyof typeof icons;
 }
 
 export default function Input({
@@ -14,10 +24,16 @@ export default function Input({
 	value,
 	onChange,
 	isDecimal,
+	icon,
 }: Props) {
 	return (
 		<Container>
-			<Label>{label}</Label>
+			<LabelWrapper>
+				{icon && icons[icon]}
+
+				<Label>{label}</Label>
+			</LabelWrapper>
+
 			<CustomInput
 				type="text"
 				placeholder={placeholder}
