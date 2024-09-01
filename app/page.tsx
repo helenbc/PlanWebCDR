@@ -8,7 +8,6 @@ import {
 	InfoText,
 	LogoContainer,
 	PageContainer,
-	Title,
 } from "@/components/home/styles";
 import Image from "next/image";
 import { useState } from "react";

@@ -33,11 +33,6 @@ export const LogoContainer = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-export const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-`;
-
 export const InfoText = styled.p`
   font-size: 1rem;
   margin-bottom: 1rem;
