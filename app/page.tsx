@@ -12,6 +12,8 @@ import {
 } from "@/components/home/styles";
 import Image from "next/image";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Page() {
 	const [cityName, setCityName] = useState("");
@@ -29,10 +31,29 @@ export default function Page() {
 	const [comercializada, setComercializada] = useState("");
 
 	function generateReport() {
+		if (
+			!cityName ||
+			!cityPopulation ||
+			!annualGeneratedWaste ||
+			!perCapitaWasteGeneration ||
+			!fracaoOrganica ||
+			!sanitarios ||
+			!plasticos ||
+			!papeis ||
+			!texteis ||
+			!coletaSeletiva ||
+			!comercializada
+		) {
+			toast.error("Atenção! Preencha todos os campos!");
+			return;
+		}
+
 		window.open(
 			`/api/reports?o=${fracaoOrganica}&s=${sanitarios}&pl=${plasticos}&pa=${papeis}&t=${texteis}&coletaSeletiva=${coletaSeletiva}&comercializada=${comercializada}`,
 			"_blank",
 		);
+
+		toast.success("Relatório gerado com sucesso!");
 	}
 
 	return (

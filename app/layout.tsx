@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
 	title: "PlanWebCDR",
@@ -21,6 +22,7 @@ export default function RootLayout({
 	return (
 		<html lang="pt-BR">
 			<body>{children}</body>
+			<ToastContainer />
 		</html>
 	);
 }
