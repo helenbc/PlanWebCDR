@@ -12,7 +12,7 @@ interface PDFOptions {
 export function generatePdf({ formula1, formula2 }: PDFOptions) {
 	const doc = new jsPDF();
 
-	doc.addImage("/logo1.png", "PNG", doc.getLineWidth() / 2, 10, 50, 50);
+	doc.addImage("/logo1.png", "PNG", 0, 0, 50, 50);
 
 	// Add report title
 	doc.setFontSize(18);
