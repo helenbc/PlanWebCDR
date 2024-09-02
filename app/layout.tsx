@@ -4,10 +4,7 @@ import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
-	title: "PlanWebCDR",
-	icons: {
-		icon: "/favicon.ico",
-	},
+	title: "PlanWebCDR - Analise o potencial energético!",
 	description:
 		"Esta aplicação visa analisar o potencial energético dos resíduos sólidos domiciliares (RSD) de uma determinada localidade brasileira, com o objetivo de desenvolver um plano de gestão estratégico.",
 };
