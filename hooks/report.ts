@@ -1,7 +1,6 @@
 import * as mathService from "@/services/math";
 import * as pdfService from "@/services/pdf";
 import { useQueryState } from "next-usequerystate";
-import { useState } from "react";
 import { toast } from "react-toastify";
 
 export function useReport() {

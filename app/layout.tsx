@@ -1,9 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
 	title: "PlanWebCDR",
+	icons: {
+		icon: "/favicon.ico",
+	},
+	description:
+		"Esta aplicação visa analisar o potencial energético dos resíduos sólidos domiciliares (RSD) de uma determinada localidade brasileira, com o objetivo de desenvolver um plano de gestão estratégico.",
 };
 
 export const viewport: Viewport = {
@@ -21,7 +27,10 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="pt-BR">
-			<body>{children}</body>
+			<body>
+				<Suspense>{children}</Suspense>
+			</body>
+
 			<ToastContainer />
 		</html>
 	);
