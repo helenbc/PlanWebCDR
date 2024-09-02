@@ -7,15 +7,16 @@ interface Formula1Vars {
 }
 
 export function getFormula1(vars: Formula1Vars): number {
-	return (
+	const result =
 		(15.42 * vars.o +
 			19.14 * vars.s +
 			32.68 * vars.pl +
 			8.33 * vars.pa +
 			21.51 * vars.t) *
 			(1 - 47.7) -
-		2442 * 47.7
-	);
+		2442 * 47.7;
+
+	return Number(result.toFixed(2));
 }
 
 interface Formula2Vars {
@@ -24,7 +25,8 @@ interface Formula2Vars {
 }
 
 export function getFormula2(vars: Formula2Vars): number {
-	return (
-		((vars.coletaSeletiva - vars.comercializada) / vars.coletaSeletiva) * 100
-	);
+	const result =
+		((vars.coletaSeletiva - vars.comercializada) / vars.coletaSeletiva) * 100;
+
+	return Number(result.toFixed(2));
 }

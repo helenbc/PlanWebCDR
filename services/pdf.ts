@@ -1,7 +1,18 @@
 import { jsPDF } from "jspdf";
 
-export function generatePdf(formula1: number, formula2: number) {
+interface PDFOptions {
+	cityName: string;
+	cityPopulation: number;
+	annualGeneratedWaste: number;
+	perCapitaWasteGeneration: number;
+	formula1: number;
+	formula2: number;
+}
+
+export function generatePdf({ formula1, formula2 }: PDFOptions) {
 	const doc = new jsPDF();
+
+	doc.addImage("/logo1.png", "PNG", doc.getLineWidth() / 2, 10, 50, 50);
 
 	// Add report title
 	doc.setFontSize(18);
@@ -25,5 +36,5 @@ export function generatePdf(formula1: number, formula2: number) {
 		90,
 	);
 
-	return doc.output();
+	doc.save("download.pdf");
 }

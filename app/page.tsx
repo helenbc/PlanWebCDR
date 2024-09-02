@@ -1,4 +1,5 @@
 "use client";
+
 import Banner from "@/components/Banner";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
@@ -9,51 +10,13 @@ import {
 	LogoContainer,
 	PageContainer,
 } from "@/components/home/styles";
+import { useReport } from "@/hooks/report";
+
 import Image from "next/image";
-import { useState } from "react";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Page() {
-	const [cityName, setCityName] = useState("");
-	const [cityPopulation, setCityPopulation] = useState("");
-	const [annualGeneratedWaste, setAnnualGeneratedWaste] = useState("");
-	const [perCapitaWasteGeneration, setPerCapitaWasteGeneration] = useState("");
-
-	const [fracaoOrganica, setFracaoOrganica] = useState("");
-	const [sanitarios, setSanitarios] = useState("");
-	const [plasticos, setPlasticos] = useState("");
-	const [papeis, setPapeis] = useState("");
-	const [texteis, setTexteis] = useState("");
-
-	const [coletaSeletiva, setColetaSeletiva] = useState("");
-	const [comercializada, setComercializada] = useState("");
-
-	function generateReport() {
-		if (
-			!cityName ||
-			!cityPopulation ||
-			!annualGeneratedWaste ||
-			!perCapitaWasteGeneration ||
-			!fracaoOrganica ||
-			!sanitarios ||
-			!plasticos ||
-			!papeis ||
-			!texteis ||
-			!coletaSeletiva ||
-			!comercializada
-		) {
-			toast.error("Atenção! Preencha todos os campos!");
-			return;
-		}
-
-		window.open(
-			`/api/reports?o=${fracaoOrganica}&s=${sanitarios}&pl=${plasticos}&pa=${papeis}&t=${texteis}&coletaSeletiva=${coletaSeletiva}&comercializada=${comercializada}`,
-			"_blank",
-		);
-
-		toast.success("Relatório gerado com sucesso!");
-	}
+	const report = useReport();
 
 	return (
 		<PageContainer>
@@ -79,31 +42,31 @@ export default function Page() {
 					icon="city"
 					label="Nome do Município"
 					placeholder="Ex: São Paulo"
-					value={cityName}
-					onChange={setCityName}
+					value={report.cityName || ""}
+					onChange={report.setCityName}
 				/>
 				<Input
 					icon="people"
 					label="Número de habitantes"
 					placeholder="Ex: 73044304"
-					value={cityPopulation}
-					onChange={setCityPopulation}
+					value={report.cityPopulation || ""}
+					onChange={report.setCityPopulation}
 					isDecimal
 				/>
 				<Input
 					icon="calendar"
 					label="Quantidade de resíduos gerados anualmente"
 					placeholder="10000"
-					value={annualGeneratedWaste}
-					onChange={setAnnualGeneratedWaste}
+					value={report.annualGeneratedWaste || ""}
+					onChange={report.setAnnualGeneratedWaste}
 					isDecimal
 				/>
 				<Input
 					icon="person"
 					label="Geração de resíduos per capita"
 					placeholder="12000"
-					value={perCapitaWasteGeneration}
-					onChange={setPerCapitaWasteGeneration}
+					value={report.perCapitaWasteGeneration || ""}
+					onChange={report.setPerCapitaWasteGeneration}
 					isDecimal
 				/>
 
@@ -134,40 +97,40 @@ export default function Page() {
 					icon="food"
 					label="Fração orgânica (restos de alimentos + podas) (O)"
 					placeholder="12"
-					value={fracaoOrganica}
-					onChange={setFracaoOrganica}
+					value={report.fracaoOrganica || ""}
+					onChange={report.setFracaoOrganica}
 					isDecimal
 				/>
 				<Input
 					icon="sanitizer"
 					label="Sanitários (S)"
 					placeholder="12"
-					value={sanitarios}
-					onChange={setSanitarios}
+					value={report.sanitarios || ""}
+					onChange={report.setSanitarios}
 					isDecimal
 				/>
 				<Input
 					icon="plastic"
 					label="Plásticos (Pl)"
 					placeholder="12"
-					value={plasticos}
-					onChange={setPlasticos}
+					value={report.plasticos || ""}
+					onChange={report.setPlasticos}
 					isDecimal
 				/>
 				<Input
 					icon="paper"
 					label="Papel e papelão (Pa)"
 					placeholder="12"
-					value={papeis}
-					onChange={setPapeis}
+					value={report.papeis || ""}
+					onChange={report.setPapeis}
 					isDecimal
 				/>
 				<Input
 					icon="dress"
 					label="Têxteis (T)"
 					placeholder="12"
-					value={texteis}
-					onChange={setTexteis}
+					value={report.texteis || ""}
+					onChange={report.setTexteis}
 					isDecimal
 				/>
 
@@ -189,22 +152,22 @@ export default function Page() {
 					icon="trash"
 					label="Quantidade de resíduos – COLETA SELETIVA"
 					placeholder="12"
-					value={coletaSeletiva}
-					onChange={setColetaSeletiva}
+					value={report.coletaSeletiva || ""}
+					onChange={report.setColetaSeletiva}
 					isDecimal
 				/>
 				<Input
 					icon="money"
 					label="Quantidade de resíduos - COMERCIALIZADA"
 					placeholder="12"
-					value={comercializada}
-					onChange={setComercializada}
+					value={report.comercializada || ""}
+					onChange={report.setComercializada}
 					isDecimal
 				/>
 
 				<Spacer space={20} />
 
-				<Button title="Obter relatório" onClick={generateReport} />
+				<Button title="Obter relatório" onClick={report.generatePDF} />
 
 				<Spacer space={50} />
 			</Container>
