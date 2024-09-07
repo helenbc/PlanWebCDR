@@ -11,6 +11,7 @@ import {
 	PageContainer,
 } from "@/components/home/styles";
 import { useReport } from "@/hooks/report";
+import { PDF_INTRODUCTION } from "@/services/pdf";
 
 import Image from "next/image";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,17 +27,7 @@ export default function Page() {
 			</LogoContainer>
 
 			<Container>
-				<InfoText>
-					Esta aplicação visa analisar o potencial energético dos resíduos
-					sólidos domiciliares (RSD) de uma determinada localidade brasileira,
-					com o objetivo de desenvolver um plano de gestão estratégico. O estudo
-					considera a composição dos resíduos, focando nas frações combustíveis,
-					para avaliar seu potencial como fonte de energia alternativa. A
-					aplicação busca oferecer uma solução sustentável para o desafio da
-					disposição de resíduos, alinhada com a Política Nacional de Resíduos
-					Sólidos (PNRS), propondo a utilização de Combustível Derivado de
-					Resíduos (CDR) como uma alternativa energética e ambiental.
-				</InfoText>
+				<InfoText>{PDF_INTRODUCTION}</InfoText>
 
 				<Input
 					icon="city"
@@ -51,14 +42,6 @@ export default function Page() {
 					placeholder="Ex: 73044304"
 					value={report.cityPopulation || ""}
 					onChange={report.setCityPopulation}
-					isDecimal
-				/>
-				<Input
-					icon="calendar"
-					label="Quantidade de resíduos gerados anualmente"
-					placeholder="10000"
-					value={report.annualGeneratedWaste || ""}
-					onChange={report.setAnnualGeneratedWaste}
 					isDecimal
 				/>
 				<Input
