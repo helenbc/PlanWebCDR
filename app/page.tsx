@@ -39,47 +39,26 @@ export default function Page() {
 				<Input
 					icon="people"
 					label="Número de habitantes"
-					placeholder="Ex: 73044304"
+					placeholder="Ex: 11451245"
 					value={report.cityPopulation || ""}
 					onChange={report.setCityPopulation}
 					isDecimal
 				/>
 				<Input
 					icon="person"
-					label="Geração de resíduos per capita"
-					placeholder="12000"
+					label="Geração de resíduos (Kg) per capita"
+					placeholder="Ex: 320"
 					value={report.perCapitaWasteGeneration || ""}
 					onChange={report.setPerCapitaWasteGeneration}
 					isDecimal
 				/>
 
-				<InfoText>
-					A Política Nacional de Resíduos Sólidos (PNRS) do Brasil objetiva
-					promover a gestão integrada e o gerenciamento dos resíduos sólidos, de
-					modo a assegurar um destino final ambientalmente adequado. A
-					disposição dos resíduos sólidos domiciliares (RSD) é um desafio na
-					maior parte dos municípios brasileiros, muitas vezes efetuada sem
-					tratamento prévio, com inúmeros impactos ambientais negativos. Nesse
-					contexto, o objetivo deste estudo foi analisar o potencial energético
-					dos RSD do ENTRADA 1, que conta com uma população de ENTRADA 2
-					habitantes que geram anualmente cerca de ENTRADA 3 resíduos, a partir
-					do atual cenário do gerenciamento desses resíduos, como plano de
-					gestão estratégico. O estudo foi feito a partir da estimativa do
-					potencial energético das principais frações combustíveis que compõem
-					os RSD brasileiros, combinando-se informações obtidas da literatura. A
-					fração mais significativa é de matéria orgânica, seguida de
-					recicláveis e por fim rejeitos. Com intuito de mostrar os benefícios
-					econômicos e ambientais que esse tipo de resíduo apresenta como
-					recurso, assim como uma alternativa para a demanda de energia que a
-					cada dia aumenta, como solução já que os recursos naturais tendem a
-					esgotar, apresentamos passos estratégicos para um plano de gestão afim
-					de colocar em prática a inserção do CDR.
-				</InfoText>
+				<InfoText>Adicione a quantidade de resíduos por tipo de lixo.</InfoText>
 
 				<Input
 					icon="food"
 					label="Fração orgânica (restos de alimentos + podas) (O)"
-					placeholder="12"
+					placeholder="Ex: 1231"
 					value={report.fracaoOrganica || ""}
 					onChange={report.setFracaoOrganica}
 					isDecimal
@@ -87,7 +66,7 @@ export default function Page() {
 				<Input
 					icon="sanitizer"
 					label="Sanitários (S)"
-					placeholder="12"
+					placeholder="Ex: 954"
 					value={report.sanitarios || ""}
 					onChange={report.setSanitarios}
 					isDecimal
@@ -95,7 +74,7 @@ export default function Page() {
 				<Input
 					icon="plastic"
 					label="Plásticos (Pl)"
-					placeholder="12"
+					placeholder="Ex: 122"
 					value={report.plasticos || ""}
 					onChange={report.setPlasticos}
 					isDecimal
@@ -103,7 +82,7 @@ export default function Page() {
 				<Input
 					icon="paper"
 					label="Papel e papelão (Pa)"
-					placeholder="12"
+					placeholder="Ex: 1123"
 					value={report.papeis || ""}
 					onChange={report.setPapeis}
 					isDecimal
@@ -111,7 +90,7 @@ export default function Page() {
 				<Input
 					icon="dress"
 					label="Têxteis (T)"
-					placeholder="12"
+					placeholder="Ex: 3002"
 					value={report.texteis || ""}
 					onChange={report.setTexteis}
 					isDecimal
@@ -120,29 +99,21 @@ export default function Page() {
 				<Spacer space={20} />
 
 				<InfoText>
-					Para atingir a meta da PNRS de enviar apenas rejeitos aos aterros
-					sanitários, a eficiência da coleta seletiva é fundamental e quanto
-					melhor a separação na fonte e na operação de triagem, menor a geração
-					de rejeito. Nesse caso Besen et al., (2017), define que a Taxa de
-					Rejeito (TR) mede a eficiência da separação dos resíduos na fonte
-					geradora e na triagem. Logo, a taxa de rejeitos é representada partir
-					da equação 2. De acordo com Besen et al., (2016) o resultado do índice
-					dos rejeitos quando é superior a 30% é considerado com baixa tendência
-					à sustentabilidade, ou seja, um cenário inadequado (ALCANTARA, 2022).
+					Adicione a quantidade de resíduos por tipo de coleta.
 				</InfoText>
 
 				<Input
 					icon="trash"
-					label="Quantidade de resíduos – COLETA SELETIVA"
-					placeholder="12"
+					label="Quantidade de resíduos (Kg) – COLETA SELETIVA"
+					placeholder="Ex: 70334432"
 					value={report.coletaSeletiva || ""}
 					onChange={report.setColetaSeletiva}
 					isDecimal
 				/>
 				<Input
 					icon="money"
-					label="Quantidade de resíduos - COMERCIALIZADA"
-					placeholder="12"
+					label="Quantidade de resíduos (Kg) - COMERCIALIZADA"
+					placeholder="Ex: 300439421"
 					value={report.comercializada || ""}
 					onChange={report.setComercializada}
 					isDecimal
