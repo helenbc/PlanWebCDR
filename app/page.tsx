@@ -11,7 +11,7 @@ import {
 	PageContainer,
 } from "@/components/home/styles";
 import { useReport } from "@/hooks/report";
-import { PDF_INTRODUCTION } from "@/services/pdf";
+import { PDF_INTRODUCTION_1, PDF_INTRODUCTION_2 } from "@/services/pdf";
 
 import Image from "next/image";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,7 +27,8 @@ export default function Page() {
 			</LogoContainer>
 
 			<Container>
-				<InfoText>{PDF_INTRODUCTION}</InfoText>
+				<InfoText>{PDF_INTRODUCTION_1}</InfoText>
+				<InfoText>{PDF_INTRODUCTION_2}</InfoText>
 
 				<Input
 					icon="city"
@@ -53,7 +54,9 @@ export default function Page() {
 					isDecimal
 				/>
 
-				<InfoText>Adicione a quantidade de resíduos por tipo de lixo.</InfoText>
+				<InfoText>
+					Adicione a quantidade de resíduos por tipo de material.
+				</InfoText>
 
 				<Input
 					icon="food"

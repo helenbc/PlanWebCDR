@@ -8,8 +8,11 @@ interface PDFOptions {
 	formula2: number;
 }
 
-export const PDF_INTRODUCTION =
-	"Sua cidade está a um pequeno passo para uma melhor gestão dos resíduos sólidos urbanos, seu Plano Municipal e os serviços implantados o considera apto para colocar em prática através do nosso Plano De Gestão Estratégica, a inserção Do CDR na recuperação dos resíduos sólidos urbanos, contribuir para o desenvolvimento da sua cidade e do meio ambiente.";
+export const PDF_INTRODUCTION_1 =
+	"A produção de resíduos sólidos é uma consequência natural da vida em comunidade desde os primórdios, e com o crescimento acelerado dessas comunidades a geração de resíduos tem aumentado desproporcionalmente ao longo dos anos. Contudo, ter estratégia é fundamental para controle e gestão eficiente de uma cidade. Este website gera um plano estratégico, com uma abordagem sustentável para o gerenciamento de resíduos sólidos urbanos reduzindo a dependência de aterros sanitários, promovendo a economia circular e contribuindo para a mitigação dos impactos ambientais através da produção e uso eficiente do Combustível Derivado de Resíduos (CDR), tendo como objetivo geral nortear o gestor do município para a produção e utilização de CDR como parte integrante do gerenciamento de resíduos sólidos urbanos. Este plano estratégico é um guia inicial, a sua implementação eficaz dependerá da colaboração entre governo, empresas, comunidade acadêmica e local.";
+
+export const PDF_INTRODUCTION_2 =
+	"Sua cidade está a um Pequeno Passo para uma melhor Gestão dos Resíduos Sólidos Urbanos (RSU), seu Plano Municipal e os Serviços Implantados o considera Apto para colocar em prática através do nosso Plano De Gestão Estratégica a Inserção do CDR na Recuperação dos Resíduos Sólidos Urbanos, contribuir para o desenvolvimento da sua cidade e do Meio Ambiente.";
 
 class PlanWebCDRPDF {
 	private doc: jsPDF;
@@ -25,7 +28,6 @@ class PlanWebCDRPDF {
 		this.addIntroduction();
 		this.addMunicipalData(options);
 		this.addPhases();
-		this.addFluxogram();
 		this.addPhaseDetails();
 		this.doc.save("PlanWebCDR.pdf");
 	}
@@ -44,7 +46,8 @@ class PlanWebCDRPDF {
 			logoHeight,
 		);
 		this.addText("Bem vindo ao PlanWebCDR", 18, { align: "center", y: 70 });
-		this.addText(PDF_INTRODUCTION, 12, { align: "justify", y: 80 });
+		this.addText(PDF_INTRODUCTION_1, 12, { align: "justify", y: 80 });
+		this.addText(PDF_INTRODUCTION_2, 12, { align: "justify", y: 140 });
 	}
 
 	private addMunicipalData({
@@ -57,7 +60,7 @@ class PlanWebCDRPDF {
 		this.doc.setFont("helvetica", "normal");
 		this.doc.setFontSize(14);
 
-		let y = 120;
+		let y = 170;
 		const lineHeight = 7;
 
 		// First line
@@ -108,11 +111,11 @@ class PlanWebCDRPDF {
 
 		// Third line
 		y += lineHeight;
-		this.doc.text("SEU MUNICÍPIO PODE GERAR ", this.leftMargin, y);
+		this.doc.text("SEU MUNICÍPIO GERA ANUALMENTE ", this.leftMargin, y);
 		this.doc.setFont("helvetica", "bold");
 		this.doc.text(
 			`${totalGenerated.toFixed(2)} `,
-			this.leftMargin + this.doc.getTextWidth("SEU MUNICÍPIO PODE GERAR "),
+			this.leftMargin + this.doc.getTextWidth("SEU MUNICÍPIO GERA ANUALMENTE "),
 			y,
 		);
 		this.doc.setFont("helvetica", "normal");
@@ -120,7 +123,7 @@ class PlanWebCDRPDF {
 			"kg/dia DE RESÍDUOS.",
 			this.leftMargin +
 				this.doc.getTextWidth(
-					`SEU MUNICÍPIO PODE GERAR ${totalGenerated.toFixed(2)} `,
+					`SEU MUNICÍPIO GERA ANUALMENTE ${totalGenerated.toFixed(2)}  `,
 				),
 			y,
 		);
@@ -128,8 +131,8 @@ class PlanWebCDRPDF {
 
 	private addPhases(): void {
 		const introduction =
-			"Te daremos os passos para que alcance seu objetivo, siga as etapas pré estabelecidas pelo nosso estudo guiado pelo fluxograma abaixo. Este plano estratégico é contemplado por 4 fases:";
-		this.addText(introduction, 14, { align: "justify", y: 160 });
+			"Agora, te daremos os passos para que alcance seu objetivo, siga as etapas pré estabelecidas pelo nosso estudo, este plano estratégico é contemplado por 4 fases, sendo elas:";
+		this.addText(introduction, 14, { align: "justify", y: 250 });
 
 		const phases = [
 			"FASE 1 - Análise de Ambientes: Forças e Fraquezas, Ameaças e Oportunidades - SWOT.",
@@ -137,38 +140,17 @@ class PlanWebCDRPDF {
 			"FASE 3 - Metodologia de Planejamento: Ferramentas e Gerenciamento",
 			"FASE 4 - Acompanhamento - Monitoramento e avaliação.",
 		];
-		this.addText(phases.join("\n"), 12, { y: 180 });
-	}
-
-	private addFluxogram(): void {
-		this.doc.addPage();
-		this.addText(
-			"O fluxograma a seguir detalha cada etapa do objetivo e suas ações práticas.",
-			14,
-			{
-				align: "center",
-				y: 30,
-			},
-		);
-
-		const pageWidth = this.doc.internal.pageSize.width;
-		const pageHeight = this.doc.internal.pageSize.height;
-
-		this.doc.addImage(
-			"/pic.png",
-			"PNG",
-			this.leftMargin,
-			31,
-			pageWidth * 0.8,
-			pageHeight * 0.9,
-		);
+		this.addText(phases.join("\n"), 12, { y: 270 });
 	}
 
 	private addPhaseDetails(): void {
 		this.doc.addPage();
 		this.addPhaseOneDetails();
+		this.doc.addPage();
 		this.addPhaseTwoDetails();
+		this.doc.addPage();
 		this.addPhaseThreeDetails();
+		this.doc.addPage();
 		this.addPhaseFourDetails();
 	}
 
@@ -183,16 +165,28 @@ class PlanWebCDRPDF {
 
 		const paragraphs = [
 			"Nesta fase é preciso conhecer melhor seu município, entendendo quais são os pontos de força e fraqueza. Recomenda-se, especialmente, a utilização da Matriz SWOT para entender quais são os pontos fortes e fracos além de suas oportunidades e ameaças.",
-			"Esta fase abrange as etapas de 1 a 6, a partir da Elaboração do Diagnóstico Situacional da gestão dos resíduos feita no município, a partir do levantamento dos dados analisar o Gerenciamento, A Coleta, Recicláveis, Destinação Final Adequada e Potencial Energético Dos Rejeitos.",
+			"A partir da Elaboração do Diagnóstico Situacional da gestão dos resíduos feita no município, a partir do levantamento dos dados analisar o Gerenciamento, A Coleta, Recicláveis, Destinação Final Adequada e Potencial Energético Dos Rejeitos.",
 		];
 
-		this.addText(paragraphs.join("\n\n"), 12, { y: 40, align: "justify" });
+		this.doc.addImage(
+			"/FASE_1.jpg",
+			"JPEG",
+			this.leftMargin,
+			50,
+			this.doc.internal.pageSize.width * 0.8,
+			75,
+		);
+
+		this.addText(paragraphs.join("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"), 12, {
+			y: 40,
+			align: "justify",
+		});
 
 		this.doc.addImage(
 			"/pic2.png",
 			"PNG",
 			this.leftMargin,
-			80,
+			150,
 			this.doc.internal.pageSize.width * 0.8,
 			40,
 		);
@@ -201,7 +195,7 @@ class PlanWebCDRPDF {
 		this.addText(
 			"IMPORTANTE: Feito juntamente a equipe de gestão do município, responsáveis pela gravimetria, equipe de catadores de recicláveis e comunidade.",
 			12,
-			{ y: 125, align: "justify" },
+			{ y: 195, align: "justify" },
 		);
 		this.doc.setFont("helvetica", "normal");
 	}
@@ -252,7 +246,6 @@ class PlanWebCDRPDF {
 	}
 
 	private addPhaseFourDetails(): void {
-		this.doc.addPage();
 		this.doc.setFont("helvetica", "bold");
 		this.addText("FASE 4 - Acompanhamento - Monitoramento e Avaliação", 16, {
 			y: 20,
