@@ -238,20 +238,35 @@ class PlanWebCDRPDF {
 		this.addText(
 			"FASE 3 - Metodologia de Planejamento: Ferramentas e Gerenciamento",
 			16,
-			{ y: 205 },
+			{ y: 20 },
 		);
 		this.doc.setFont("helvetica", "normal");
 
+		this.addText(
+			"Assim que as Políticas Institucionais são finalizadas, entra-se na etapa de escolha da metodologia de Planejamento Estratégico e de Gerenciamento.",
+			12,
+			{ y: 40 },
+		);
+
+		this.doc.addImage(
+			"/FASE_3.jpg",
+			"JPEG",
+			this.leftMargin,
+			50,
+			this.doc.internal.pageSize.width * 0.8,
+			75,
+		);
+
 		const content = [
-			"Assim que as Políticas Institucionais são finalizadas, entra-se na etapa de escolha da metodologia de Planejamento Estratégico e de Gerenciamento. Uso da ferramenta estratégica Benchmarking, conduzindo a pesquisa a aplicação de 5 etapas:",
-			"1. Identificar o processo a ser melhorado",
-			"2. Levantamento de informação do processo",
-			"3. Busca de um modelo a ser comparado (cenário real e cenário ideal)",
-			"4. Comparação dos processos em ambos os cenários",
-			"5. Implantação do novo modelo de processo e controle deste (cenário potencial)",
+			"Uso da ferramenta estratégica Benchmarking, conduzindo a pesquisa a aplicação de 5 etapas:",
+			"1. É a etapa que identifica o processo a ser melhorado;",
+			"2. Levantamento de informação do processo;",
+			"3. Busca de um modelo a ser comparado (cenário real e cenário ideal);",
+			"4. Comparação dos processos em ambos os cenários;",
+			"5. Implantação do novo modelo de processo e controle deste (cenário potencial).",
 		];
 
-		this.addText(content.join("\n\n"), 12, { y: 225, align: "left" });
+		this.addText(content.join("\n\n"), 12, { y: 140, align: "left" });
 	}
 
 	private addPhaseFourDetails(): void {
@@ -261,28 +276,39 @@ class PlanWebCDRPDF {
 		});
 		this.doc.setFont("helvetica", "normal");
 
-		const sections = [
+		this.addText(
+			'Partindo do lema "O que não é mensurado, não é gerenciado". Esta fase contempla nos direciona a uma implementação gradual, monitoramento, avaliação e educação continua com amparo da comunicação entre as partes envolvidas no desenvolvimento do plano para o seu sucesso, a partir de indicadores dos processos é possível realizar de forma eficiente a inserção do CDR no plano de gestão do município.',
+			12,
 			{
-				title: null,
-				content: [
-					'Partindo do lema "O que não é mensurado, não é gerenciado". Esta fase contempla as Etapas 8, 9 e 10 que nos direciona a uma implementação gradual, monitoramento, avaliação e educação continua com amparo da comunicação entre as partes envolvidas no desenvolvimento do plano para o seu sucesso, a partir de indicadores dos processos é possível realizar de forma eficiente a inserção do CDR no plano de gestão do município.',
-				],
+				y: 30,
 			},
+		);
+
+		this.doc.addImage(
+			"/FASE_4.jpg",
+			"JPEG",
+			this.leftMargin,
+			55,
+			this.doc.internal.pageSize.width * 0.8,
+			75,
+		);
+
+		const sections = [
 			{
 				title: "Implementação Gradual",
 				content: [
 					"Implementar o uso de combustíveis derivados de resíduos de maneira gradual e sustentável. Com ações práticas:",
 					[
-						"Iniciar Projetos-Piloto em áreas específicas",
-						"Monitorar e Avaliar o Desempenho desses projetos",
-						"Implementação em larga escala após avaliação positiva",
+						"Iniciar Projetos-Piloto em áreas específicas;",
+						"Monitorar e Avaliar o Desempenho desses projetos;",
+						"Implementação em larga escala após avaliação positiva;",
 					],
 				],
 			},
 			{
 				title: "Monitoramento e Avaliação Contínua",
 				content: [
-					"Acompanhar e avaliar o progresso do uso de combustíveis derivados de resíduos. Para realizar o monitoramento e avaliação de forma eficaz, é crucial estabelecer processos de coleta de dados contínuos, informatizar as informações para facilitar o acesso e a qualidade dos dados, institucionalizar a avaliação e o monitoramento, e utilizar indicadores para acompanhar o desempenho e a qualidade dos serviços ao longo do tempo.",
+					"Acompanhar e avaliar o progresso do uso de combustíveis derivados de resíduos. Para realizar o monitoramento e avaliação de forma eficaz, é crucial estabelecer processos de coleta de dados contínuos, informatizar as informações para facilitar o acesso e a qualidade dos dados, institucionalizar a avaliação e o monitoramento, e utilizar indicadores para acompanhar o desempenho e a qualidade dos serviços ao longo do tempo. Ações Práticas: Implementar Sistemas De Monitoramento de Emissões e Impactos Ambientais, assim como realizar auditorias regulares para garantir a conformidade com as metas estabelecidas.",
 				],
 			},
 			{
@@ -293,13 +319,13 @@ class PlanWebCDRPDF {
 			},
 		];
 
-		let yPosition = 30;
+		let yPosition = 140;
 		for (const section of sections) {
 			if (section.title) {
 				this.doc.setFont("helvetica", "bold");
 				this.addText(section.title, 14, { y: yPosition });
 				this.doc.setFont("helvetica", "normal");
-				yPosition += 10;
+				yPosition += 5;
 			}
 			for (const contentItem of section.content) {
 				if (Array.isArray(contentItem)) {
@@ -315,12 +341,20 @@ class PlanWebCDRPDF {
 					// This is a regular paragraph
 					this.addText(contentItem, 12, { y: yPosition, align: "justify" });
 					yPosition += 20;
+
+					if (section.title === "Monitoramento e Avaliação Contínua") {
+						yPosition += 15;
+					}
+					if (section.title === "Implementação Gradual") {
+						yPosition -= 10;
+					}
 				}
 			}
 			yPosition += 10;
 		}
 
-		yPosition += 10;
+		yPosition -= 5;
+
 		this.doc.setFont("helvetica", "bold");
 		this.addText(
 			"É importante lembrar que, embora o planejamento estratégico seja um excelente instrumento para direcionar o desenvolvimento de todos os segmentos que compõem a cidade, é ainda mais essencial que esses planos se transformem em ações e em uma gestão contínua da cidade, tornando o planejamento municipal um processo dinâmico. Para isso, cabe aos gestores públicos dar continuidade aos planos elaborados, acompanhados da sociedade civil, utilizando ferramentas de gestão compartilhada e monitoramento de indicadores envolvendo todas as secretarias municipais em uma visão de futuro comum.",
