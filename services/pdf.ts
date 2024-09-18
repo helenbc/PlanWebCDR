@@ -205,21 +205,30 @@ class PlanWebCDRPDF {
 		this.addText(
 			"FASE 2 - Políticas Institucionais: Missão, Visão e Valores",
 			16,
-			{ y: 145 },
+			{ y: 20 },
 		);
 		this.doc.setFont("helvetica", "normal");
 
 		const content = [
-			"Concluída a etapa de Análise de Ambientes, inicia-se a etapa de criação das Políticas Institucionais que regem o município e que simbolizam o grande direcionamento que a gestão deve ter em seu Planejamento Estratégico. Esta fase abrange a etapa 7 com o objetivo de desenvolvimento de políticas e ações que incentivem o uso do CDR.",
+			"Concluída a etapa de Análise de Ambientes, inicia-se a etapa de criação das Políticas Institucionais que regem o município e que simbolizam o grande direcionamento que a gestão deve ter em seu Planejamento Estratégico. Esta fase tem como objetivo o  desenvolvimento de políticas e ações que incentivem o uso do CDR.",
 		];
 
-		this.addText(content.join("\n\n"), 12, { y: 155, align: "justify" });
+		this.addText(content.join("\n\n"), 12, { y: 30, align: "justify" });
+
+		this.doc.addImage(
+			"/FASE_2.jpg",
+			"JPEG",
+			this.leftMargin,
+			50,
+			this.doc.internal.pageSize.width * 0.8,
+			75,
+		);
 
 		this.doc.setFont("helvetica", "bold");
 		this.addText(
 			"NORMAS E REGULAMENTAÇÕES DEVEM SER COLOCADAS EM PRÁTICA EM CONJUNTO COM INCENTIVOS PARA A TORNAR MAIS ATRAENTE AOS SEUS MUNÍCIPES.",
 			12,
-			{ y: 180, align: "justify" },
+			{ y: 145, align: "justify" },
 		);
 		this.doc.setFont("helvetica", "normal");
 	}
