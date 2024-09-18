@@ -9,6 +9,10 @@ interface PDFOptions {
 	formula2: number;
 }
 
+function replaceDotByComma(text: number | string) {
+	return String(text).replace(".", ",");
+}
+
 export const PDF_INTRODUCTION_1 =
 	"A produção de resíduos sólidos é uma consequência natural da vida em comunidade desde os primórdios, e com o crescimento acelerado dessas comunidades a geração de resíduos tem aumentado desproporcionalmente ao longo dos anos. Contudo, ter estratégia é fundamental para controle e gestão eficiente de uma cidade. Este website gera um plano estratégico, com uma abordagem sustentável para o gerenciamento de resíduos sólidos urbanos reduzindo a dependência de aterros sanitários, promovendo a economia circular e contribuindo para a mitigação dos impactos ambientais através da produção e uso eficiente do Combustível Derivado de Resíduos (CDR), tendo como objetivo geral nortear o gestor do município para a produção e utilização de CDR como parte integrante do gerenciamento de resíduos sólidos urbanos. Este plano estratégico é um guia inicial, a sua implementação eficaz dependerá da colaboração entre governo, empresas, comunidade acadêmica e local.";
 
@@ -96,7 +100,7 @@ class PlanWebCDRPDF {
 		this.doc.text("COM GERAÇÃO PER CAPITA DE ", this.leftMargin, y);
 		this.doc.setFont("helvetica", "bold");
 		this.doc.text(
-			`${perCapitaWasteGeneration} `,
+			`${replaceDotByComma(perCapitaWasteGeneration)} `,
 			this.leftMargin + this.doc.getTextWidth("COM GERAÇÃO PER CAPITA DE "),
 			y,
 		);
@@ -105,7 +109,7 @@ class PlanWebCDRPDF {
 			"kg/hab/dia.",
 			this.leftMargin +
 				this.doc.getTextWidth(
-					`COM GERAÇÃO PER CAPITA DE ${perCapitaWasteGeneration} `,
+					`COM GERAÇÃO PER CAPITA DE ${replaceDotByComma(perCapitaWasteGeneration)} `,
 				),
 			y,
 		);
@@ -115,7 +119,7 @@ class PlanWebCDRPDF {
 		this.doc.text("SEU MUNICÍPIO GERA ANUALMENTE ", this.leftMargin, y);
 		this.doc.setFont("helvetica", "bold");
 		this.doc.text(
-			`${annualWasteGeneration.toFixed(2)} `,
+			`${replaceDotByComma(annualWasteGeneration.toFixed(2))} `,
 			this.leftMargin + this.doc.getTextWidth("SEU MUNICÍPIO GERA ANUALMENTE "),
 			y,
 		);
@@ -124,7 +128,7 @@ class PlanWebCDRPDF {
 			"kg/dia DE RESÍDUOS.",
 			this.leftMargin +
 				this.doc.getTextWidth(
-					`SEU MUNICÍPIO GERA ANUALMENTE ${annualWasteGeneration.toFixed(2)}  `,
+					`SEU MUNICÍPIO GERA ANUALMENTE ${replaceDotByComma(annualWasteGeneration.toFixed(2))}  `,
 				),
 			y,
 		);
@@ -137,7 +141,7 @@ class PlanWebCDRPDF {
 		this.doc.setFont("helvetica", "normal");
 
 		this.addText(
-			`PCI = [(15,42 O + 19,14 S + 32,68 PL + 8,33 PA + 21,51 T)\n x (1 - Wu)] - (2,442 x Wu) = ${pci}`,
+			`PCI = [(15,42 O + 19,14 S + 32,68 PL + 8,33 PA + 21,51 T)\n x (1 - Wu)] - (2,442 x Wu) = ${replaceDotByComma(pci.toFixed(5))}`,
 			12,
 			{ align: "center", y: 20 },
 		);
@@ -148,12 +152,16 @@ class PlanWebCDRPDF {
 		});
 
 		const qt = options.annualWasteGeneration / 8000;
-		this.addText(`QT = ${options.annualWasteGeneration} / 8000`, 12, {
-			align: "center",
-			y: 40,
-		});
+		this.addText(
+			`QT = ${replaceDotByComma(options.annualWasteGeneration.toFixed(5))} / 8000`,
+			12,
+			{
+				align: "center",
+				y: 40,
+			},
+		);
 
-		this.addText(`QT = ${qt}`, 12, {
+		this.addText(`QT = ${replaceDotByComma(qt.toFixed(5))}`, 12, {
 			align: "center",
 			y: 45,
 		});
@@ -162,19 +170,23 @@ class PlanWebCDRPDF {
 			align: "center",
 			y: 55,
 		});
-		this.addText(`PT (MWt) = ${qt} x ${pci}`, 12, {
-			align: "center",
-			y: 60,
-		});
+		this.addText(
+			`PT (MWt) = ${replaceDotByComma(qt.toFixed(5))} x ${replaceDotByComma(pci.toFixed(5))}`,
+			12,
+			{
+				align: "center",
+				y: 60,
+			},
+		);
 
 		const pt = qt * pci;
-		this.addText(`PT (MWt) = ${pt}`, 12, {
+		this.addText(`PT (MWt) = ${replaceDotByComma(pt.toFixed(5))}`, 12, {
 			align: "center",
 			y: 65,
 		});
 
 		const dummy = pt * 1 * 1000;
-		this.addText(`PT x 1 x 1000 = ${dummy}`, 12, {
+		this.addText(`PT x 1 x 1000 = ${replaceDotByComma(dummy.toFixed(5))}`, 12, {
 			align: "center",
 			y: 70,
 		});
@@ -185,7 +197,7 @@ class PlanWebCDRPDF {
 		});
 
 		const pe = pt * 0.3;
-		this.addText(`PE (MWt) = ${pe}`, 12, {
+		this.addText(`PE (MWt) = ${replaceDotByComma(pe.toFixed(5))}`, 12, {
 			align: "center",
 			y: 85,
 		});
@@ -194,7 +206,7 @@ class PlanWebCDRPDF {
 	private addPhases(): void {
 		const introduction =
 			"Agora, te daremos os passos para que alcance seu objetivo, siga as etapas pré estabelecidas pelo nosso estudo, este plano estratégico é contemplado por 4 fases, sendo elas:";
-		this.addText(introduction, 14, { align: "justify", y: 250 });
+		this.addText(introduction, 14, { align: "justify", y: 110 });
 
 		const phases = [
 			"FASE 1 - Análise de Ambientes: Forças e Fraquezas, Ameaças e Oportunidades - SWOT.",
@@ -202,7 +214,7 @@ class PlanWebCDRPDF {
 			"FASE 3 - Metodologia de Planejamento: Ferramentas e Gerenciamento",
 			"FASE 4 - Acompanhamento - Monitoramento e avaliação.",
 		];
-		this.addText(phases.join("\n"), 12, { y: 270 });
+		this.addText(phases.join("\n"), 12, { y: 130 });
 	}
 
 	private addPhaseDetails(): void {

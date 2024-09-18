@@ -76,17 +76,23 @@ export function useReport() {
 		texteis,
 		coletaSeletiva,
 		comercializada,
-		setCityName,
-		setCityPopulation,
-		setAnnualWasteGeneration,
-		setPerCapitaWasteGeneration,
-		setFracaoOrganica,
-		setSanitarios,
-		setPlasticos,
-		setPapeis,
-		setTexteis,
-		setColetaSeletiva,
-		setComercializada,
+		setCityName: (value: string) => setCityName(value.replace(",", ".")),
+		setCityPopulation: (value: string) =>
+			setCityPopulation(value.replace(",", ".")),
+		setAnnualWasteGeneration: (value: string) =>
+			setAnnualWasteGeneration(value.replace(",", ".")),
+		setPerCapitaWasteGeneration: (value: string) =>
+			setPerCapitaWasteGeneration(value.replace(",", ".")),
+		setFracaoOrganica: (value: string) =>
+			setFracaoOrganica(value.replace(",", ".")),
+		setSanitarios: (value: string) => setSanitarios(value.replace(",", ".")),
+		setPlasticos: (value: string) => setPlasticos(value.replace(",", ".")),
+		setPapeis: (value: string) => setPapeis(value.replace(",", ".")),
+		setTexteis: (value: string) => setTexteis(value.replace(",", ".")),
+		setColetaSeletiva: (value: string) =>
+			setColetaSeletiva(value.replace(",", ".")),
+		setComercializada: (value: string) =>
+			setComercializada(value.replace(",", ".")),
 
 		generatePDF,
 	};
