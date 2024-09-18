@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 export function useReport() {
 	const [cityName, setCityName] = useQueryState("cityName");
 	const [cityPopulation, setCityPopulation] = useQueryState("cityPopulation");
+	const [annualWasteGeneration, setAnnualWasteGeneration] = useQueryState(
+		"annualWasteGeneration",
+	);
 	const [perCapitaWasteGeneration, setPerCapitaWasteGeneration] = useQueryState(
 		"perCapitaWasteGeneration",
 	);
@@ -52,6 +55,7 @@ export function useReport() {
 		pdfService.generatePdf({
 			cityName,
 			cityPopulation: Number(cityPopulation),
+			annualWasteGeneration: Number(annualWasteGeneration),
 			perCapitaWasteGeneration: Number(perCapitaWasteGeneration),
 			formula1,
 			formula2,
@@ -63,6 +67,7 @@ export function useReport() {
 	return {
 		cityName,
 		cityPopulation,
+		annualWasteGeneration,
 		perCapitaWasteGeneration,
 		fracaoOrganica,
 		sanitarios,
@@ -73,6 +78,7 @@ export function useReport() {
 		comercializada,
 		setCityName,
 		setCityPopulation,
+		setAnnualWasteGeneration,
 		setPerCapitaWasteGeneration,
 		setFracaoOrganica,
 		setSanitarios,

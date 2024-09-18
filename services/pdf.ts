@@ -3,6 +3,7 @@ import { jsPDF } from "jspdf";
 interface PDFOptions {
 	cityName: string;
 	cityPopulation: number;
+	annualWasteGeneration: number;
 	perCapitaWasteGeneration: number;
 	formula1: number;
 	formula2: number;
@@ -27,6 +28,7 @@ class PlanWebCDRPDF {
 	generatePDF(options: PDFOptions): void {
 		this.addIntroduction();
 		this.addMunicipalData(options);
+		this.addMathData(options);
 		this.addPhases();
 		this.addPhaseDetails();
 		this.doc.save("PlanWebCDR.pdf");
@@ -54,9 +56,8 @@ class PlanWebCDRPDF {
 		cityName,
 		cityPopulation,
 		perCapitaWasteGeneration,
+		annualWasteGeneration,
 	}: PDFOptions): void {
-		const totalGenerated = cityPopulation * perCapitaWasteGeneration;
-
 		this.doc.setFont("helvetica", "normal");
 		this.doc.setFontSize(14);
 
@@ -114,7 +115,7 @@ class PlanWebCDRPDF {
 		this.doc.text("SEU MUNICÍPIO GERA ANUALMENTE ", this.leftMargin, y);
 		this.doc.setFont("helvetica", "bold");
 		this.doc.text(
-			`${totalGenerated.toFixed(2)} `,
+			`${annualWasteGeneration.toFixed(2)} `,
 			this.leftMargin + this.doc.getTextWidth("SEU MUNICÍPIO GERA ANUALMENTE "),
 			y,
 		);
@@ -123,10 +124,71 @@ class PlanWebCDRPDF {
 			"kg/dia DE RESÍDUOS.",
 			this.leftMargin +
 				this.doc.getTextWidth(
-					`SEU MUNICÍPIO GERA ANUALMENTE ${totalGenerated.toFixed(2)}  `,
+					`SEU MUNICÍPIO GERA ANUALMENTE ${annualWasteGeneration.toFixed(2)}  `,
 				),
 			y,
 		);
+	}
+
+	private addMathData(options: PDFOptions): void {
+		this.doc.addPage();
+		const pci = options.formula1;
+
+		this.doc.setFont("helvetica", "normal");
+
+		this.addText(
+			`PCI = [(15,42 O + 19,14 S + 32,68 PL + 8,33 PA + 21,51 T)\n x (1 - Wu)] - (2,442 x Wu) = ${pci}`,
+			12,
+			{ align: "center", y: 20 },
+		);
+
+		this.addText("QT = Resíduos Gerados Anualmente (T) / 8000", 12, {
+			align: "center",
+			y: 35,
+		});
+
+		const qt = options.annualWasteGeneration / 8000;
+		this.addText(`QT = ${options.annualWasteGeneration} / 8000`, 12, {
+			align: "center",
+			y: 40,
+		});
+
+		this.addText(`QT = ${qt}`, 12, {
+			align: "center",
+			y: 45,
+		});
+
+		this.addText("PT (MWt) = QT x PCI", 12, {
+			align: "center",
+			y: 55,
+		});
+		this.addText(`PT (MWt) = ${qt} x ${pci}`, 12, {
+			align: "center",
+			y: 60,
+		});
+
+		const pt = qt * pci;
+		this.addText(`PT (MWt) = ${pt}`, 12, {
+			align: "center",
+			y: 65,
+		});
+
+		const dummy = pt * 1 * 1000;
+		this.addText(`PT x 1 x 1000 = ${dummy}`, 12, {
+			align: "center",
+			y: 70,
+		});
+
+		this.addText("PE (MWt) = PT x 30%", 12, {
+			align: "center",
+			y: 80,
+		});
+
+		const pe = pt * 0.3;
+		this.addText(`PE (MWt) = ${pe}`, 12, {
+			align: "center",
+			y: 85,
+		});
 	}
 
 	private addPhases(): void {

@@ -47,6 +47,14 @@ export default function Page() {
 				/>
 				<Input
 					icon="person"
+					label="Quantidade de resíduos (Kg) gerados anualmente"
+					placeholder="Ex: 320"
+					value={report.annualWasteGeneration || ""}
+					onChange={report.setAnnualWasteGeneration}
+					isDecimal
+				/>
+				<Input
+					icon="person"
 					label="Geração de resíduos (Kg) per capita"
 					placeholder="Ex: 320"
 					value={report.perCapitaWasteGeneration || ""}
